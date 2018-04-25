@@ -25,7 +25,7 @@ public class Main {
 				System.out.println(sc.nextLine());
 
 			// close() cierra la lectura del archivo
-			sc.close();
+//			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
