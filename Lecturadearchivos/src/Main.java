@@ -12,43 +12,62 @@ public class Main {
 	char caracter;
 	int numeroDeVeces = 0;
 	static ArrayList<String> contenidoArchivo;
-	static HashMap<String, Integer>contadorPalabras;
-		
+	static HashMap<String, Integer> contadorPalabras;
+
 	public static void main(String[] args) {
 		leerArchivo();
-		
+
 		contarPalabras();
-		
+
 		mostrarResultado();
 	}
 
 	private static void mostrarResultado() {
 		// TODO Auto-generated method stub
 		
+
 	}
 
 	private static void contarPalabras() {
-		
-		contadorPalabras = new HashMap<String, Integer>(); 
-		
+
+		contadorPalabras = new HashMap<String, Integer>();
+
 		for (String cont : contenidoArchivo) {
-			String[]palabras =	identificarPalabra(cont);
+			String[] palabras = identificarPalabra(cont);
 			contarPalabras(palabras);
 		}
 		
+
 	}
 
 	private static void contarPalabras(String[] palabras) {
-		// TODO Auto-generated method stub
-		
+			for (String p : palabras) {
+				if(contadorPalabras.get(p)==null) {
+					contadorPalabras.put(p, 1);
+				}
+				else {
+					int contador=contadorPalabras.get(p)+1;
+					contadorPalabras.put(p, contador);
+				}
+			}
+
 	}
 
-	private static String[] identificarPalabra(String cont) {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < cont.length(); i++) {
-			  
-		}	
-		return null;
+	private static String[] identificarPalabra(String contenido) {
+		ArrayList<String> palabras = new ArrayList<String>();
+		int inicio = 0;
+		for (int i = 0; i < contenido.length(); i++) {
+			String palabra = "";
+			if (contenido.charAt(i) == ' ') {
+				if (i > 0) {
+					palabra = contenido.substring(inicio, i);
+					inicio = i + 1;
+					palabras.add(palabra);
+				}
+			}
+		}
+
+		return palabras.toArray(new String[0]);
 	}
 
 	public static void leerArchivo() {
@@ -68,7 +87,7 @@ public class Main {
 			while (sc.hasNextLine()) {
 				String linea = sc.nextLine();
 				contenidoArchivo.add(linea);
-				//System.out.println(linea);
+				// System.out.println(linea);
 
 			}
 
